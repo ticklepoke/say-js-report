@@ -2,38 +2,26 @@
 
 \section{Background}
 
-\section{Dynamic Languages}
+\input ./introduction/dynamic_languages.tex
 
-Dynamic languages can be generalised as languages that differ several beheviours of the language to runtime, that would otherwise occur during compile time for static languages.\footnote{\url{https://developer.mozilla.org/en-US/docs/Glossary/Dynamic_programming_language}}
+\input ./introduction/challenges.tex
 
-\section{Extended Call Graphs}
-
-Call graphs provide a visualisation of the relations between functions in a codebase. When a function \textit{foo} calls another function \textit{bar} within its body, we can describe this process as \textit{foo} invoking \textit{bar}.
-
-\lstinputlisting{./code_examples/fooBar.js}
-
-In a complex codebase with a large number of invocations, a graph representing these invocations would be useful in helping a developer to quickly understand the codebase.
-\\
-Call graphs with function - function relations are defined as follows:
-
-\begin{definition}
-    A call-graph $G(V, E)$ consists of the vertex set $V$ representing functions and edge set $E$ representing invocations such that $e_{ij}\in{E}$ is a directed edge from $v_i\in{V}$ to $v_j\in{V}$ if function $i$ invokes function $j$. 
-\end{definition}
-
-It would be helpful for the developer if a similar relation can be used to visualise when functions refer to variables outside its scope.
-
-\lstinputlisting{./code_examples/fooVar.js}
-
-This project attempts to extend the call graph by adding function - variable relations, resulting in the following definition:
-
-\begin{definition}
-    An extended call-graph $G'(V',E')$ consists of the vertex set $V'$ representing functions and variables, and the edge set $E'$ representing invocations and references such that $e_{ij}\in{E'}$ is a directed edge from $v_i\in{V'}$ to $v_j\in{V'}$ if function $i$ invokes function $j$ or if function $i$ references variable $j$.
-\end{definition}
+\input ./introduction/call_graphs.tex
 
 \section{Applications}
 
-\section{Motivating Example}
+Extended call graphs can be used internally to power \textit{go to definition} features in IDEs\footnote{Integrated Development Environment}.
 
-\section{Challenges}
+\begin{center}
+    \includegraphics[width=1\textwidth]{./images/goto_def.eps}
+\end{center}
 
+Looking up the definition of a function or variable can be simplified to the straightforward task of traversing the extended call graph to find the source and destination vertices.
 
+Another application for extended call graphs is to generate UML-like\footnote{\url{https://www.visual-paradigm.com/guide/uml-unified-modeling-language/what-is-uml/}} diagrams for dynamic languages to visualise the relations in a codebase and improve developer productivity.
+
+\section{Prior Work}
+
+There were several projects that have attempted to generate call graphs using approximate methods. Most notably, \textit{Schaefer et al}\footnote{TODO} devised a technique which accounts for First Class Function behaviour using data flow analysis. 
+
+This project builds upon the work done by \textit{Schaefer et al} by including function - variable relations in an extended call graph.

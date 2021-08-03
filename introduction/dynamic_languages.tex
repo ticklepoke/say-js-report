@@ -1,0 +1,44 @@
+\section{Dynamic Languages}
+
+Dynamic languages can be generalised as languages that differ several beheviours of the language to runtime, that would otherwise occur during compile time for static languages.\footnote{\url{https://developer.mozilla.org/en-US/docs/Glossary/Dynamic_programming_language}}
+
+For the purpose of this project, we will focus on dynamic languages in the context of Javascript. In particular, Javascript exhibits the following behaviours which contribute to its dynamic nature.
+
+\subsection{Eval}
+
+In Javascript, the \textit{eval} function takes a string as parameter and evaluates it as if it were Javascript source code, returning the result of evaluating the string.\footnote{\url{https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/eval}}
+
+
+\lstinputlisting{./code_examples/ch01/eval.js}
+
+In the example above, the argument string passed to \textit{eval} is interpreted as valid Javascript code and evaluates to 2.
+
+This mechanism allows code to be changed at runtime, making Javascript a dynamic language. However, there has been considerable criticism against the usage of \textit{eval}. Most notably, \textit{eval} is unsafe\footnote{\url{https://developers.google.com/web/fundamentals/security/csp#eval_too}} and prevents an optimising compiler from conducting data flow optimisations\footnote{\url{https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/eval#never_use_eval!}}.
+
+\subsection{Object Modification}
+
+Objects in Javascript can be modified at runtime by adding or removing property fields and behaviour. Contrary to a more static language like Java where object instances are created based on the attributes and behaviour of the instantiating class, Javascript objects can add properties via the \textit{Object.defineProperty()}\footnote{\url{https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/defineProperty}} and delete properties via the \textit{delete}\footnote{\url{https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/delete}} operators.
+
+Functions can be defined on objects at runtime in the following manner:
+
+\lstinputlisting{./code_examples/ch01/defineFunction.js}
+
+In the above example, \textit{fooFunc} is only attached to \textit{obj} at runtime. It would not be possible to conduct static analysis on the location of \textit{fooFunc} using the information available at compile time.
+
+\subsection{Dynamic Types}
+
+Types in Javascript are determined at runtime and can be altered at runtime. An AST\footnote{Abstract Syntax Tree} generated at compile time does not capture any information about the type of the variable.
+
+In the following example, an AST is generated for a variable declaration. It can be observed that no information is available of the type of variable \textit{a}. Its type can be determined using the \textit{typeof} operator at runtime only.
+
+\lstinputlisting{./code_examples/ch01/varDecl.js}
+
+\begin{center}
+    \includegraphics[height=150pt]{./images/var_decl.eps}
+\end{center}
+
+In addition, the type of \textit{a} can be altered at runtime. It is possible to assign a string or function to \textit{a}, changing its type.
+
+\lstinputlisting{./code_examples/ch01/varAssignment.js}
+
+Thus, it would be impossible to conduct static analysis by relying on the type system of a dynamic language.
