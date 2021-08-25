@@ -1,0 +1,21 @@
+name: Generate Report
+on:
+  push:
+    branches: master
+jobs:
+  compile:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Setup Repository
+        uses: actions/checkout@v2
+      - name: Compile Latex
+        uses: xu-cheng/latex-action@v2
+        with:
+          root_file: main.tex
+          jobname: report
+      - name: Upload artifact
+        uses: actions/upload-artifact@v2
+        with:
+          name: report
+          path: main.pdf
+          if-no-files-found: error
