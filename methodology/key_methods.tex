@@ -1,0 +1,18 @@
+\section{Key Methods}
+
+The fact generation process involves the four main modules listed above. Briefly speaking, the \textbf{driver} coordinates the function calls between the three feature modules. The sequence diagram below provides a high level overview of the fact generation process. 
+
+\begin{center}
+\includegraphics[height=550pt]{./images/sequence.eps}
+\end{center}
+
+The sequence diagram above provides a partial overview of the important calls for fact generation. Some less important calls have been deliberately left out to keep the sequence diagram readable. Lifelines in the diagram represent directory level components rather than individual classes.
+
+The fact generation process can be broken down into 3 main stages:
+
+\begin{itemize}
+    \item \textbf{Parsing and Annotation} - \textbf{lib-frontend} is responsible for creating Abstract Syntax Trees from an array of input files. The individual trees for each file will be merged into a combined tree. It then pre-processes the AST by annotating information about the file and enclosing scope for tree nodes that are related to functions. 
+    \item \textbf{Symbol Tree} - \textbf{lib-ir} is responsible for generating the symbol table and populating it based on function to variable bindings.
+    \item \textbf{Fact Generation} - \textbf{lib-callgraph} is responsible for generating facts based on various categories. Firstly, it examines function calls for native Javascript functions. Then, it examines function calls for intra-procedural calls, where functions are defined locally. Lastly, it examines function calls for inter-procedural calls.
+    \item \textbf{Fact Formatting} - \textbf{driver} is responsible for formatting the facts. It is currently formatted as an adjacency graph encoded as a JSON file.
+\end{itemize}

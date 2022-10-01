@@ -1,0 +1,19 @@
+\section{Driver}
+
+\subsection{Methods}
+
+The driver is responsible for driving the entire fact extraction process. It exposes 3 main methods:
+
+\begin{itemize}
+    \item \textit{Driver.setFiles(files)} - Set files or directories to be read.
+    \item \textit{Driver.setOutputJson(filename)} - Set the output JSON filename to be written to.
+    \item \textit{Driver.build()} - Generates the callgraph and returns the generated facts.
+\end{itemize}
+
+\subsection{Usage}
+
+The driver can be used in 2 different ways:
+\begin{itemize}
+    \item As a commmand line tool found in \textit{driver/cli.ts}. It can be used as an executable with \textit{yarn} or \textit{npm} or as a script in the \textit{package.json} file. If an output file is not specified when invoking the command, the facts will be printed to console.
+    \item As a programming interface by importing and interacting with the driver class directly: \lstinputlisting{./code_examples/ch02/import.js}
+\end{itemize}

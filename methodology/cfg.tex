@@ -1,0 +1,39 @@
+\section{Context Free Grammar}
+
+Javascript provides three different ways to express functions, all of which constitute as first class variables\parencite{firstClassFunctions}. The Javascript spec\parencite{jsCfg} defines function expressions, function declarations and arrow function expressions as all valid ways to represent functions. While all three representations yields a callable first class variable, they differ in certain aspects such as hoisting\parencite{hoisting} and lexical \textit{this} scoping\parencite{arrowFn}.
+
+The context free grammar in Extended Backus Naur Form\parencite{ebnf} below defines the syntax of the different function expressions.
+
+\subsection{Function Expressions and Declarations}
+Prior to ES2015\parencite{es2015}, Javascript only had two ways of defining functions: expressions and declarations. Apart from the syntatic differences, function expressions could be defined as anonymous "thunks" and then assigned to variables. 
+
+Function declarations were also handled slightly differently in terms of hoisting. Function declarations would be hoisted to the top of their lexical scope, allowing them to be reference in lines of code above where they were declared. In contrast, function expressions are not hoisted to the top of their lexical scopes.
+
+The context free grammars of function expressions and declarations are shown below.
+
+\begin{bnf*}
+    \bnfprod{FunctionDeclaration}
+    {\bnfts{function} \bnfsp \bnfpn{BindingIdentifier} \bnfsp \bnfts{(}}\\
+    \bnfmore{\bnfpn{FormalParameters} \bnfsp \bnfts{)} \bnfsp \bnfts{\{} \bnfsp \bnfpn{FunctionBody} \bnfsp \bnfts{\}}}\\
+    \bnfprod{FunctionExpression}
+    {\bnfts{function} \bnfsp \bnfts{(}}\\
+    \bnfmore{\bnfpn{FormalParameters} \bnfsp \bnfts{)} \bnfsp \bnfts{\{} \bnfsp \bnfpn{FunctionBody} \bnfsp \bnfts{\}}}
+\end{bnf*}
+
+\subsection{Arrow Function Expressions}
+ES2015\parencite{es2015} introduced the arrow function expression, synonymous to the lambda function found in many other programming languages. This provided another mechanism for defining ad-hoc, anonymous functions that still had first class properties.
+
+A key difference of the arrow function from previous function forms is that the arrow function does not introduce a lexical \textit{this} object to its scope, whereas the other function definitions do. The arrow function inherits the \textit{this} object from its outer scope. Therefore, mutating the \textit{this} object within an arrow function's scope would directly mutate the \textit{this} object of its enclosing scope.
+
+The context free grammar of the arrow function is show below.
+
+\begin{bnf*}
+  \bnfprod{ArrowFunction}
+  {\bnfpn{ArrowParameters} \bnfsp \bnfts{=>} \bnfsp \bnfpn{ConciseBody} }\\
+  \bnfprod{ArrowParameters}
+  {\bnfpn{BindingIdenifier}}\\
+  \bnfmore{\bnfor \bnfpn{CoverParenthesizedExpressionAndArrowParameterList}}\\
+  \bnfprod{ConciseBody}
+  {\bnfpn{AssignmentExpression}}\\
+  \bnfmore{\bnfor \bnfts{\{} \bnfsp \bnfpn{FunctionBody} \bnfts{\}} \bnfsp}
+\end{bnf*}

@@ -1,0 +1,28 @@
+\section{Frontend}
+
+The frontend is incharge of parsing an preparing the syntax tree for fact generation.
+
+\subsection{Parsing}
+
+The project utilizes a third party compiler frontend for the scanning and parsing phases of the compilation process. A third party frontend was chosen over a hand-buillt one due to performance and spec compliance reasons. The project uses the Esprima\parencite{esprima} frontend to generate the Abstract Syntax Tree. The Esprima parser is suited for this application due to the following reasons:
+\begin{itemize}
+    \item Full support for the latest Javascript (ECMAScript) spec.
+    \item Estree\parencite{estree} compliant syntax tree.
+    \item Tracking syntax node locations using index-based and line-column based information.
+    \item The library is heavily tested  with over 1600 unit tests providing code coverage.
+\end{itemize}
+
+\subsection{Type System}
+
+The \textbf{lib-frontend} module extends the Esprima types with the following custom types that contain useful additional metadata for later stages.
+
+\begin{itemize}
+    \item \textbf{ProgramCollection} represents a collection of programs found in separate files. This wrapper type allows programs from multiple files to be handled elegantly as a single entity. \textit{Node} refers to any ESTree nodes. All specific instances of ESTree nodes extend from this type. \lstinputlisting{./code_examples/ch02/programCollection.js}
+    \item \textbf{ExtendedNode} extends the existing \textit{Node} type. This allows several metadata fields to be captured when traversing the ESTree, which is needed for data flow analysis when generating the call graph.
+    \item \textbf{ExtendedNode\textless T\textgreater} behaves similarly to \textit{ExtendedNode}, but provides support for generics. By passing a named type as a generic, we are able to create an extended type for that specific named type. For example, \textit{ExtendedNode\textless Literal\textgreater} has both ESTree \textit{Literal} properties and project specific metadata properties.
+\end{itemize}
+
+\subsection{Type Narrowing}
+
+The \textit{Node} type can be type-narrowed\parencite{typeNarrowing} to a specific ESTree node type using Typescript's type predicates. This is useful when we want to access properties on a specific ESTree node type.
+\lstinputlisting{./code_examples/ch02/typeNarrowing.ts}

@@ -5,3 +5,8 @@
 *.dvi
 *.toc
 *.pdf
+*.bbl
+*.bcl
+*.blg
+*.bcf
+*.gz

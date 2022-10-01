@@ -4,19 +4,19 @@ In addition to the challenges posed by the dynamic features of Javascript, there
 
 \subsection{First Class Functions}
 
-Functions in Javascript are treated as \textit{first class citizens}\footnote{\url{https://developer.mozilla.org/en-US/docs/Glossary/First-class_Function}}, similar to other primitive types such as \textit{number} and \textit{string}. Function expressions support the following behaviour:
+Functions in Javascript are treated as \textit{first class citizens}\parencite{firstClassFunctions}, similar to other primitive types such as \textit{number} and \textit{string}. Function expressions support the following behaviour:
 
 \begin{itemize}
     \item{Assignment to variables.}
     \item{Passed as arguments into functions. This is commonly referred to as a \textit{callback}.}
-    \item{Returning a function definition from an outer function. This is commonly used in \textit{Higher Order Functions}\footnote{\url{https://www.oreilly.com/library/view/functional-javascript/9781449360757/ch04.html}} where an outer function (considered the higher order) returns an inner function to be invoked later on.} 
+    \item{Returning a function definition from an outer function. This is commonly used in \textit{Higher Order Functions}\parencite{functionalJs4} where an outer function (considered the higher order) returns an inner function to be invoked later on.} 
 \end{itemize}
 
 In order to account for this behaviour of functions, we need to conduct data flow analysis to locate the position of functions.
 
 \subsection{Dynamic Object Access}
 
-Objects properties in Javascript can be accessed using the dot \textit{"."} notation or braces \textit{"[ ]"} notation. The difference between the two is that the dot notation requires that a valid identifier\footnote{\url{https://developer.mozilla.org/en-US/docs/Glossary/Identifier}} be used directly while the braces notation will first try to evaluate the expression within the braces to yield a computed identifier.
+Objects properties in Javascript can be accessed using the dot \textit{"."} notation or braces \textit{"[ ]"} notation. The difference between the two is that the dot notation requires that a valid identifier\parencite{identifier} be used directly while the braces notation will first try to evaluate the expression within the braces to yield a computed identifier.
 
 \lstinputlisting{./code_examples/ch01/objectAccess.js}
 

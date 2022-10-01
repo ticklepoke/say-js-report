@@ -3,6 +3,7 @@
 \usepackage[english]{babel}
 \usepackage{indentfirst}
 \usepackage{url}
+\usepackage{csquotes}
 
 % For definitions
 \usepackage{amsthm}
@@ -50,6 +51,13 @@
 \usepackage{graphicx}
 %\graphicspath{ {./images/} }
 
+% Biblio
+\usepackage[backend=biber,sorting=none]{biblatex}
+\addbibresource{references.bib}
+
+% bnf
+\usepackage[altpo]{backnaur}
+
 \linespread{1.25}
 \begin{document}
 
@@ -64,5 +72,7 @@
 %\input requirement_gathering.tex
 
 %\input architecture.tex
+
+\printbibliography
 
 \end{document}

@@ -18,10 +18,10 @@ Extended call graphs can be used internally to power \textit{go to definition} f
 
 Looking up the definition of a function or variable can be simplified to the straightforward task of traversing the extended call graph to find the source and destination vertices.
 
-Another application for extended call graphs is to generate UML-like\footnote{\url{https://www.visual-paradigm.com/guide/uml-unified-modeling-language/what-is-uml/}} diagrams for dynamic languages to visualise the relations in a codebase and improve developer productivity.
+Another application for extended call graphs is to generate UML-like\parencite{uml} diagrams for dynamic languages to visualise the relations in a codebase and improve developer productivity.
 
 \section{Prior Work}
 
-There were several projects that have attempted to generate call graphs using approximate methods. Most notably, \textit{Schaefer et al}\footnote{TODO} devised a technique which accounts for First Class Function behaviour using data flow analysis. 
+There were several projects that have attempted to generate call graphs using approximate methods. Most notably, \textit{Schaefer et al}\parencite{schaefer} devised a technique which accounts for First Class Function behaviour using data flow analysis. 
 
 This project builds upon the work done by \textit{Schaefer et al} by including function - variable relations in an extended call graph.

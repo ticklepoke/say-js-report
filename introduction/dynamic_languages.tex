@@ -1,23 +1,22 @@
 \section{Dynamic Languages}
 
-Dynamic languages can be generalised as languages that differ several beheviours of the language to runtime, that would otherwise occur during compile time for static languages.\footnote{\url{https://developer.mozilla.org/en-US/docs/Glossary/Dynamic_programming_language}}
+Dynamic languages can be generalised as languages that differ several beheviours of the language to runtime, that would otherwise occur during compile time for static languages.\parencite{dynProgLang} 
 
 For the purpose of this project, we will focus on dynamic languages in the context of Javascript. In particular, Javascript exhibits the following behaviours which contribute to its dynamic nature.
 
 \subsection{Eval}
 
-In Javascript, the \textit{eval} function takes a string as parameter and evaluates it as if it were Javascript source code, returning the result of evaluating the string.\footnote{\url{https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/eval}}
-
+In Javascript, the \textit{eval} function takes a string as parameter and evaluates it as if it were Javascript source code, returning the result of evaluating the string. \parencite{eval}
 
 \lstinputlisting{./code_examples/ch01/eval.js}
 
 In the example above, the argument string passed to \textit{eval} is interpreted as valid Javascript code and evaluates to 2.
 
-This mechanism allows code to be changed at runtime, making Javascript a dynamic language. However, there has been considerable criticism against the usage of \textit{eval}. Most notably, \textit{eval} is unsafe\footnote{\url{https://developers.google.com/web/fundamentals/security/csp#eval_too}} and prevents an optimising compiler from conducting data flow optimisations\footnote{\url{https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/eval#never_use_eval!}}.
+This mechanism allows code to be changed at runtime, making Javascript a dynamic language. However, there has been considerable criticism against the usage of \textit{eval}. Most notably, \textit{eval} is unsafe\parencite{evalSecurity} and prevents an optimising compiler from conducting data flow optimisations.\parencite{neverUseEval}
 
 \subsection{Object Modification}
 
-Objects in Javascript can be modified at runtime by adding or removing property fields and behaviour. Contrary to a more static language like Java where object instances are created based on the attributes and behaviour of the instantiating class, Javascript objects can add properties via the \textit{Object.defineProperty()}\footnote{\url{https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/defineProperty}} and delete properties via the \textit{delete}\footnote{\url{https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/delete}} operators.
+Objects in Javascript can be modified at runtime by adding or removing property fields and behaviour. Contrary to a more static language like Java where object instances are created based on the attributes and behaviour of the instantiating class, Javascript objects can add properties via the \textit{Object.defineProperty()}\parencite{defineProperty} and delete properties via the \textit{delete}\parencite{delete} operators.
 
 Functions can be defined on objects at runtime in the following manner:
 
